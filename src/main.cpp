@@ -34,9 +34,9 @@ int main(int argc, char* argv[])
 
   PID pid_steer, pid_throttle;
   // TODO: Initialize the pid variable for steering
-  double init_Kp = -0.2;
+  double init_Kp = -0.15;
   double init_Ki = -0.00001;
-  double init_Kd = -3.2;
+  double init_Kd = -3;
 
 // pass arguments override defacult pid gains
   if(argc>1){
