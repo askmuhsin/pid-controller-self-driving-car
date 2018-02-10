@@ -34,10 +34,11 @@ int main(int argc, char* argv[])
 
   PID pid_steer, pid_throttle;
   // TODO: Initialize the pid variable for steering
-  double init_Kp = -0.15;
-  double init_Ki = -0.0001;
-  double init_Kd = -3.75;
+  double init_Kp = -0.2;
+  double init_Ki = -0.00001;
+  double init_Kd = -3.2;
 
+// pass arguments override defacult pid gains
   if(argc>1){
     init_Kp = atof(argv[1]);
     init_Ki = atof(argv[2]);
@@ -48,9 +49,10 @@ int main(int argc, char* argv[])
   pid_steer.Init(init_Kp, init_Ki, init_Kd);
 
   // Initialize pid values for throttle
-  double init_Kp_throttle = -1;
+  // When high cte reduce axeleration propotionally
+  double init_Kp_throttle = -0.5;
   double init_Ki_throttle = 0;
-  double init_Kd_throttle = -1;
+  double init_Kd_throttle = 0;
 
   std::cout << "Throttle PID Values " << init_Kp_throttle <<" "<< init_Ki_throttle <<" "<< init_Kd_throttle << '\n';
   pid_throttle.Init(init_Kp_throttle, init_Ki_throttle, init_Kd_throttle);
@@ -87,18 +89,17 @@ int main(int argc, char* argv[])
           }
 
           pid_throttle.UpdateError(fabs(cte));
-          throttle_value = 0.7 + pid_throttle.TotalError();
-
+          // 0.55 is a Bias term to map the throttle vales appropriately
+          throttle_value = 0.55 + pid_throttle.TotalError();
+          // speed limiter
           if (throttle_value > 0.7) {
             throttle_value = 0.7;
-          } else if (throttle_value < 0.2) {
-            throttle_value = 0.2;
+          } else if (throttle_value < 0.05) {
+            throttle_value = 0.05;
           }
 
-          std::cout << "throttle_value === " << throttle_value << ", fabs(cte) === " << fabs(cte) << '\n';
-
           // DEBUG
-          // std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+          std::cout << "CTE: " << cte << ", Steering: " << steer_value << ", Throttle: " << throttle_value << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
