@@ -58,10 +58,11 @@ Here the basic idea was to maintain two of the gains, constant and try to see ho
 
 ### Throttle Controller
 Implementing throttle controller was much easier. The prinicple was simply to slow down the vehicle at turns and accelerate on straight road. So for error I took the absolute value of CTE (as the side to which the lateral displacement was not a factor of importance for the throttle value). And a Bias (+0.55) term was added to map the throttle values accordingly.
-Line 93:main.cpp `throttle_value = 0.55 + pid_throttle.TotalError();`. A control statement was added to maintian the speed in a predefined range.
+Line 93:main.cpp `throttle_value = 0.55 + pid_throttle.TotalError();`.  
+A control statement was added to maintian the speed in a predefined range.
 
 ---
 ## Result
 The make files run without any errors. The car completes one lap of the track without leaving the drivable portion of the surface.  
-[Video-One-Full-Lap](https://youtu.be/SvE5Mc0OZpA)   
+[Video-Link-One-Full-Lap](https://youtu.be/SvE5Mc0OZpA)   
 ![project_4](https://github.com/askmuhsin/pid-controller-self-driving-car/blob/master/images/project_4.gif)
