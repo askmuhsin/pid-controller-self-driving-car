@@ -31,8 +31,7 @@ This project implements a PID controller for steadily controlling the steering a
     cd uWebSockets
     git checkout e94b6e1
     ```
-    
-
+----    
 ## PID Implementation
 A propotional-integral-derivative controller is perhaps the most widely used feedback control loop mechanism, mostly due to its ease of implementation and also for being computationaly efficient.
 <br></br><img src="https://github.com/askmuhsin/pid-controller-self-driving-car/blob/master/images/screenshot.png" width="350" height="200" title="PID">
@@ -63,5 +62,6 @@ Line 93:main.cpp `throttle_value = 0.55 + pid_throttle.TotalError();`. A control
 
 ---
 ## Result
-The make files run without any errors. The vehicle completes one lap of the track without 
+The make files run without any errors. The car completes one lap of the track without leaving the drivable portion of the surface.
+[Video-One-Full-Lap](https://youtu.be/SvE5Mc0OZpA)
 ![project_4](https://github.com/askmuhsin/pid-controller-self-driving-car/blob/master/images/project_4.gif)
