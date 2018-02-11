@@ -49,10 +49,10 @@ The Control Gains for each of them are as follows:
 These values have been obtained mainly by trial and error. But without an underlying intution of the PID control parameters, the combinatorial effort to figure out the Gains would be difficult. By defining a cost function to determine the performance of the PID values, it would be possible to implement techniques like twiddle. But here I have not made an attempt to do so, maybe its something worth trying as a future improvement.
 
 ### Steering Controller
-TL;DR
-Kp --> How hard to steer
-Ki --> To overcome systematic Bias
-Kd --> Reduce Oscillation.
+TL;DR  
+Kp --> How hard to steer  
+Ki --> To overcome systematic Bias  
+Kd --> Reduce Oscillation  
 
 Here the basic idea was to maintain two of the gains constant and try to see how the system responds to the changes in one of them. For example I started by setting Ki & Kd to 0 and tried values from -5 to 5 in steps of 1 for Kp Gain. It was obvious that the response to error had to be vector(direction mattered), the Propotional gain had to be negative. The vehicle started to respond to the CTE, but soon began oscillating widely. So a higher value for Kd was set. A slight alignment issue was observed over time, inorder to counter that a small Ki was also assigned.
 
